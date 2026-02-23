@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scroll Quest (Simple)</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+    <!-- LOADING SCREEN -->
+    <div id="loading">
+        <p>Loading your quest...</p>
+    </div>
+
+    <!-- TOP PROGRESS BAR -->
+    <div id="progressBox">
+        <div id="progressBar"></div>
+    </div>
+
+    <!-- RESPONSIVE HUD (TOP RIGHT) -->
+    <div id="hud">
+        <div><strong>Window Size:</strong></div>
+        <div id="sizeText">0 x 0</div>
+
+        <div style="margin-top:5px;"><strong>Device:</strong></div>
+        <div id="deviceText">Desktop</div>
+    </div>
+
+    <!-- BOSS WARNING -->
+    <div id="boss">⚠️ Boss approaching!</div>
+
+    <header>
+        <h1>Scroll Quest</h1>
+        <p>Scroll down to unlock the sections.</p>
+    </header>
+
+    <main id="container">
+        <section class="level unlocked">
+            <h2>Hero (Start)</h2>
+            <p>This one is already unlocked.</p>
+        </section>
+
+        <section class="level locked">
+            <h2>Level 1</h2>
+            <p>Locked until you scroll here.</p>
+        </section>
+
+        <section class="level locked">
+            <h2>Level 2</h2>
+            <p>Locked until you scroll here.</p>
+        </section>
+
+        <section class="level locked">
+            <h2>Level 3</h2>
+            <p>Locked until you scroll here.</p>
+        </section>
+
+        <section class="level locked">
+            <h2>Boss (Final)</h2>
+            <p>Last section.</p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

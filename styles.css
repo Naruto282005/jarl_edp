@@ -1,0 +1,91 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* LOADING */
+#loading {
+    position: fixed;
+    inset: 0;
+    background: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+/* PROGRESS BAR */
+#progressBox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: #ddd;
+}
+
+#progressBar {
+    height: 100%;
+    width: 0%;
+    background: #3b82f6;
+}
+
+/* HUD */
+#hud {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background: #111;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* BOSS WARNING */
+#boss {
+    position: fixed;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: orange;
+    padding: 8px 12px;
+    border-radius: 10px;
+    display: none;
+}
+
+/* CONTENT */
+header {
+    padding: 70px 20px 20px;
+}
+
+#container {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+/* 2 columns on desktop */
+@media (min-width: 900px) {
+    #container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.level {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 10px;
+    min-height: 120px;
+}
+
+.locked {
+    opacity: 0.4;
+}
+
+.unlocked {
+    opacity: 1;
+}
