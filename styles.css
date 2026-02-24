@@ -14,6 +14,14 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 999;
+
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+#loading.fadeOut {
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* PROGRESS BAR */
@@ -30,6 +38,7 @@ body {
     height: 100%;
     width: 0%;
     background: #3b82f6;
+    transition: width 0.1s linear;
 }
 
 /* HUD */
@@ -53,7 +62,14 @@ body {
     background: orange;
     padding: 8px 12px;
     border-radius: 10px;
-    display: none;
+
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+#boss.show {
+    opacity: 1;
 }
 
 /* CONTENT */
@@ -80,12 +96,25 @@ header {
     padding: 15px;
     border-radius: 10px;
     min-height: 120px;
+
+    transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .locked {
-    opacity: 0.4;
+    opacity: 0.25;
+    transform: translateY(14px);
 }
 
 .unlocked {
     opacity: 1;
+    transform: translateY(0);
+}
+
+.level1{
+    border: 1px solid #ccc;
+    width: 100%;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    margin-left: 50%;
 }

@@ -16,6 +16,100 @@ function throttle(func, delay) {
 
 // RESPONSIVE HUD (resize event)
 function updateHUD() {
+  // SIMPLE THROTTLE
+  function throttle(func, delay) {
+    let canRun = true;
+
+    return function () {
+      if (!canRun) return;
+
+      canRun = false;
+      func();
+
+      setTimeout(() => {
+        canRun = true;
+      }, delay);
+    };
+  }
+
+  // RESPONSIVE HUD
+  function updateHUD() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    document.getElementById("sizeText").textContent = width + " x " + height;
+
+    let device = "Desktop";
+    if (width <= 600) device = "Mobile";
+    else if (width <= 900) device = "Tablet";
+
+    document.getElementById("deviceText").textContent = device;
+  }
+
+  // PROGRESS BAR + BOSS WARNING
+  function updateScrollStuff() {
+    const scrollTop = document.documentElement.scrollTop;
+    const scrollHeight =
+      document.documentElement.scrollHeight - window.innerHeight;
+
+    const percent = scrollHeight > 0 ? scrollTop / scrollHeight : 0;
+
+    document.getElementById("progressBar").style.width = percent * 100 + "%";
+
+    const boss = document.getElementById("boss");
+
+    if (percent >= 0.7) {
+      boss.classList.add("show");
+    } else {
+      boss.classList.remove("show");
+    }
+  }
+
+  // UNLOCK SECTIONS
+  function unlockSections() {
+    const levels = document.querySelectorAll(".level");
+
+    levels.forEach((level) => {
+      const box = level.getBoundingClientRect();
+
+      if (box.top < window.innerHeight * 0.8) {
+        level.classList.remove("locked");
+        level.classList.add("unlocked");
+      }
+    });
+  }
+
+  // EVENTS
+  window.addEventListener("load", () => {
+    updateHUD();
+    updateScrollStuff();
+    unlockSections();
+
+    // fade loading screen
+    setTimeout(() => {
+      const loading = document.getElementById("loading");
+      loading.classList.add("fadeOut");
+
+      setTimeout(() => {
+        loading.style.display = "none";
+      }, 500);
+    }, 300);
+  });
+
+  window.addEventListener(
+    "resize",
+    throttle(() => {
+      updateHUD();
+    }, 200),
+  );
+
+  window.addEventListener(
+    "scroll",
+    throttle(() => {
+      updateScrollStuff();
+      unlockSections();
+    }, 80),
+  );
   const width = window.innerWidth;
   const height = window.innerHeight;
 
@@ -36,7 +130,7 @@ function updateScrollStuff() {
   const scrollHeight =
     document.documentElement.scrollHeight - window.innerHeight;
 
-  const percent = scrollTop / scrollHeight;
+  const percent = scrollHeight > 0 ? scrollTop / scrollHeight : 0;
   document.getElementById("progressBar").style.width = percent * 100 + "%";
 
   // show warning at 70%
@@ -70,8 +164,14 @@ window.addEventListener("load", () => {
 
   // loading screen mawala after load
   setTimeout(() => {
-    document.getElementById("loading").style.display = "none";
-  }, 500);
+    const loading = document.getElementById("loading");
+    loading.classList.add("fadeOut");
+
+    // after fade, saka i-hide totally
+    setTimeout(() => {
+      loading.style.display = "none";
+    }, 500);
+  }, 300);
 });
 
 window.addEventListener(
